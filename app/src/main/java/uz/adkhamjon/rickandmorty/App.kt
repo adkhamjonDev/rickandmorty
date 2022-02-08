@@ -13,6 +13,5 @@ class App:Application() {
         appComponent=DaggerAppComponent.builder().
         appModule(AppModule()).
         dbModule(DbModule(this)).build()
-
     }
 }

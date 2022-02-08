@@ -10,4 +10,9 @@
         android:name="uz.adkhamjon.rickandmorty.ui.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" />
+    <fragment
+        android:id="@+id/webFragment"
+        android:name="uz.adkhamjon.rickandmorty.ui.WebFragment"
+        android:label="fragment_web"
+        tools:layout="@layout/fragment_web" />
 </navigation>
