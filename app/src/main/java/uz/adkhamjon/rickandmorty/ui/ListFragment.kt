@@ -42,11 +42,7 @@ class ListFragment : Fragment() {
                 findNavController().navigate(R.id.webFragment)
             }
         })
-        lifecycleScope.launch {
-            characterViewModel.characters.collectLatest {
-                rvAdapter.submitData(it)
-            }
-        }
+
         binding.recView.hasFixedSize()
         binding.recView.layoutManager=gridLayoutManager
         binding.recView.adapter = rvAdapter
@@ -75,8 +71,6 @@ class ListFragment : Fragment() {
 
 
         }
-
         return binding.root
     }
-
 }

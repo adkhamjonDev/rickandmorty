@@ -13,4 +13,5 @@
     <color name="item_bottom_linear">#94000000</color>
     <color name="fragment_back">#303030</color>
     <color name="item_linear_txt">#BABABA</color>
+    <color name="item_linear_back">#303030</color>
 </resources>
