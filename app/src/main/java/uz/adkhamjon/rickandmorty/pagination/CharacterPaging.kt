@@ -23,8 +23,17 @@ class CharacterPaging @Inject constructor(
             val nextPageNumber = params.key ?: 1
             val character = apiService.getCharacters(page = nextPageNumber)
             if (nextPageNumber > 1) {
+
                 return LoadResult.Page(character.results, nextPageNumber - 1, nextPageNumber + 1)
             } else {
+                character.results.forEach{
+                    val data = CharacterEntity(
+                        name = it.name,
+                        status = it.status,
+                        location = it.location.name,
+                        imageUrl = it.image)
+                    appDatabase.mortyDao().insert(data)
+                }
                 return LoadResult.Page(character.results, null, nextPageNumber + 1)
             }
         } catch (e: Exception) {
