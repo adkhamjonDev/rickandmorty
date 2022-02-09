@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class CharacterViewModel @Inject constructor(
     val apiService: ApiService,
-    val appDatabase: AppDatabase
+    val appDatabase: AppDatabase,
 ): ViewModel() {
     val characters = Pager(PagingConfig(Config.PAGE_SIZE)) {
         CharacterPaging(apiService,appDatabase)

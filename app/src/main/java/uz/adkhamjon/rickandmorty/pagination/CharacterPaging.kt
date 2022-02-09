@@ -20,28 +20,24 @@ class CharacterPaging @Inject constructor(
             val nextPageNumber = params.key ?: 1
             val character = apiService.getCharacters(page = nextPageNumber)
             if (nextPageNumber > 1) {
-                character.results.forEach{
-                    val data = CharacterEntity(
-                        name = it.name,
-                        status = it.status,
-                        location = it.location.name,
-                        imageUrl = it.image)
-                    appDatabase.mortyDao().insert(data)
-                }
+                saveData(character.results)
                 return LoadResult.Page(character.results, nextPageNumber - 1, nextPageNumber + 1)
             } else {
-                character.results.forEach{
-                    val data = CharacterEntity(
-                        name = it.name,
-                        status = it.status,
-                        location = it.location.name,
-                        imageUrl = it.image)
-                    appDatabase.mortyDao().insert(data)
-                }
+                saveData(character.results)
                 return LoadResult.Page(character.results, null, nextPageNumber + 1)
             }
         } catch (e: Exception) {
             return LoadResult.Error(e)
+        }
+    }
+    private suspend fun saveData(list: List<Result>){
+        list.forEach{
+            val data = CharacterEntity(
+                name = it.name,
+                status = it.status,
+                location = it.location.name,
+                imageUrl = it.image)
+            appDatabase.mortyDao().insert(data)
         }
     }
 }

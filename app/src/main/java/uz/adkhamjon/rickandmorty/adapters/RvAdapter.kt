@@ -11,12 +11,14 @@ import com.bumptech.glide.Glide
 import uz.adkhamjon.rickandmorty.databinding.GridItem2Binding
 import uz.adkhamjon.rickandmorty.databinding.GridItem3Binding
 import uz.adkhamjon.rickandmorty.databinding.LinearItemBinding
+import uz.adkhamjon.rickandmorty.interfaces.OnItemClickListener
 import uz.adkhamjon.rickandmorty.models.Result
 
 class RvAdapter(
     var context: Context,
     var gridLayoutManager: GridLayoutManager,
-    var onItemClickListener: OnItemClickListener) :
+    var onItemClickListener: OnItemClickListener
+) :
     PagingDataAdapter<Result, RecyclerView.ViewHolder>(MyDiffUtill()) {
     class MyDiffUtill : DiffUtil.ItemCallback<Result>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
@@ -84,26 +86,26 @@ class RvAdapter(
     }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == 1) {
-            val fromVh = holder as Linear
+            val grid1 = holder as Linear
             getItem(position)?.let { movie->
-                fromVh.onBind(movie)
+                grid1.onBind(movie)
                 holder.itemView.setOnClickListener {
                     onItemClickListener.itemClick(movie)
                 }
             }
         } else if(getItemViewType(position)==2){
-            val toVh = holder as Grid2
+            val grid2 = holder as Grid2
             getItem(position)?.let { movie->
-                toVh.onBind(movie)
+                grid2.onBind(movie)
                 holder.itemView.setOnClickListener {
                     onItemClickListener.itemClick(movie)
                 }
             }
         }
         else{
-            val toVh = holder as Grid3
+            val grid3 = holder as Grid3
             getItem(position)?.let { movie->
-                toVh.onBind(movie)
+                grid3.onBind(movie)
                 holder.itemView.setOnClickListener {
                     onItemClickListener.itemClick(movie)
                 }
@@ -119,8 +121,5 @@ class RvAdapter(
             return 2
         }
         return 3
-    }
-    interface OnItemClickListener{
-         fun itemClick(result: Result)
     }
 }

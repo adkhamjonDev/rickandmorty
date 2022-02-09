@@ -9,5 +9,4 @@ import uz.adkhamjon.rickandmorty.db.entity.CharacterEntity
 @Database(entities = [CharacterEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun mortyDao(): MortyDao
-
 }

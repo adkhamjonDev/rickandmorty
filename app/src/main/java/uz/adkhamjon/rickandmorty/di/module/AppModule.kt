@@ -1,14 +1,9 @@
 package uz.adkhamjon.rickandmorty.di.module
 
-import android.content.Context
-import androidx.room.Room
-import dagger.Component
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import uz.adkhamjon.rickandmorty.db.dao.MortyDao
-import uz.adkhamjon.rickandmorty.db.database.AppDatabase
 import uz.adkhamjon.rickandmorty.network.ApiService
 import uz.adkhamjon.rickandmorty.utils.Config
 import javax.inject.Singleton
